@@ -30,7 +30,7 @@ namespace MechatronikaCool
         private int actualSpanIndex = 0;
         private ApplicationField actualField = null;
         private MenuItem oldMenuItem = null;
-        private List<MenuItem> menuItems = null;
+        private readonly List<MenuItem> menuItems = null;
 
         public MainWindow()
         {
@@ -122,9 +122,6 @@ namespace MechatronikaCool
 
             actualSpanIndex--;
             spans.Text = actualField.Spans[actualSpanIndex];
-
-            //spanTitle.FontSize = 15;
-            //spanTitle.Foreground = new SolidColorBrush(Colors.Red);
             spanTitle.Text = actualField.Titles[actualSpanIndex];
         }
 
@@ -134,9 +131,6 @@ namespace MechatronikaCool
 
             actualSpanIndex++;
             spans.Text = actualField.Spans[actualSpanIndex];
-
-            //spanTitle.FontSize = 15;
-            //spanTitle.Foreground = new SolidColorBrush(Colors.Red);
             spanTitle.Text = actualField.Titles[actualSpanIndex];
         }
 
@@ -144,7 +138,6 @@ namespace MechatronikaCool
         {
             actualField = new ApplicationField(fields.Keys.ToArray()[0], fields.Values.ToArray()[0]);
             actualSpanIndex = 0;
-
             maxSpanIndex = actualField.Spans.Count;
 
             spans.Text = actualField.Spans[actualSpanIndex];
