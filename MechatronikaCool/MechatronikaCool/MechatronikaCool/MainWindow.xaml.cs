@@ -13,7 +13,8 @@ namespace MechatronikaCool
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly Dictionary<string,string> fields = ApplicationFields.Fields;
+        private readonly Dictionary<string,string> fieldsDictionary = ApplicationFields.Fields;
+        private List<ApplicationField> applicationFields;
         private int startIndex = 0;
         private int endIndex = 5;
         private const int maxIndex = 10;
@@ -25,6 +26,7 @@ namespace MechatronikaCool
 
         public MainWindow()
         {
+            applicationFields = new List<ApplicationField>();
             menuItems = new List<MenuItem>();
 
             InitializeComponent();
@@ -32,9 +34,9 @@ namespace MechatronikaCool
 
             spans.TextAlignment = TextAlignment.Justify;
             //articleTextBlock.TextAlignment = TextAlignment.Justify;
-            spanTitle.TextAlignment = TextAlignment.Left;
-            spanTitle.FontSize = 15;
-            spanTitle.Foreground = new SolidColorBrush(Colors.Black);
+            spanTitle.TextAlignment = TextAlignment.Center;
+            spanTitle.FontSize = 20;
+            spanTitle.Foreground = new SolidColorBrush(Colors.White);
 
             LoadFirstPage();
             AddItemsToMenuItem();
@@ -46,7 +48,14 @@ namespace MechatronikaCool
             var fieldName = menuItem.Header.ToString();
             menuItem.Background = new SolidColorBrush(Colors.White);
             menuItem.Foreground = new SolidColorBrush(Colors.Black);
-            actualField = new ApplicationField(fieldName, fields[fieldName]);
+
+            actualField = LoadField(fieldName);
+            
+            if(actualField == null)
+            {
+                actualField = new ApplicationField(fieldName, fieldsDictionary[fieldName]);
+                applicationFields.Add(actualField);
+            }
             actualSpanIndex = 0;
 
             maxSpanIndex = actualField.Spans.Count;
@@ -79,7 +88,7 @@ namespace MechatronikaCool
             {
                 var item = new MenuItem
                 {
-                    Header = fields.Keys.ToArray()[i],
+                    Header = fieldsDictionary.Keys.ToArray()[i],
                     Margin = new Thickness(5, 0, 5, 0),
                     Height = menu.Height,
                     BorderThickness = new Thickness(0, 0, 0, 1),
@@ -129,7 +138,9 @@ namespace MechatronikaCool
 
         private void LoadFirstPage()
         {
-            actualField = new ApplicationField(fields.Keys.ToArray()[0], fields.Values.ToArray()[0]);
+            actualField = new ApplicationField(fieldsDictionary.Keys.ToArray()[0], fieldsDictionary.Values.ToArray()[0]);
+            applicationFields.Add(actualField);
+
             actualSpanIndex = 0;
             maxSpanIndex = actualField.Spans.Count;
 
@@ -139,6 +150,11 @@ namespace MechatronikaCool
             oldMenuItem = menuItems[0];
             oldMenuItem.Background = new SolidColorBrush(Colors.White);
             oldMenuItem.Foreground = new SolidColorBrush(Colors.Black);
+        }
+
+        private ApplicationField LoadField(string fieldName)
+        {
+            return applicationFields.FirstOrDefault(x => x.FieldName == fieldName);
         }
     }
 }
