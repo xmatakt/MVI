@@ -1,18 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using MechatronikaCool.Classes;
 
 namespace MechatronikaCool
@@ -40,7 +31,7 @@ namespace MechatronikaCool
             CreateMenuItemList();
 
             spans.TextAlignment = TextAlignment.Justify;
-            articleTextBlock.TextAlignment = TextAlignment.Justify;
+            //articleTextBlock.TextAlignment = TextAlignment.Justify;
             spanTitle.TextAlignment = TextAlignment.Left;
             spanTitle.FontSize = 15;
             spanTitle.Foreground = new SolidColorBrush(Colors.Black);
@@ -63,7 +54,7 @@ namespace MechatronikaCool
             spans.Text = actualField.Spans[actualSpanIndex];
             spanTitle.Text = actualField.Titles[actualSpanIndex];
 
-            articleTextBlock.Text = actualField.Articles[0];
+            //articleTextBlock.Text = actualField.Articles[0];
 
             if (oldMenuItem != null)
             {
