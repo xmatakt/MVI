@@ -40,7 +40,7 @@ namespace MechatronikaCool
             CreateMenuItemList();
 
             spans.TextAlignment = TextAlignment.Justify;
-
+            articleTextBlock.TextAlignment = TextAlignment.Justify;
             spanTitle.TextAlignment = TextAlignment.Left;
             spanTitle.FontSize = 15;
             spanTitle.Foreground = new SolidColorBrush(Colors.Black);
@@ -62,6 +62,8 @@ namespace MechatronikaCool
 
             spans.Text = actualField.Spans[actualSpanIndex];
             spanTitle.Text = actualField.Titles[actualSpanIndex];
+
+            articleTextBlock.Text = actualField.Articles[0];
 
             if (oldMenuItem != null)
             {
