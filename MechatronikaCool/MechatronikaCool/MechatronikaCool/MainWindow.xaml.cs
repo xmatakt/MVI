@@ -8,6 +8,7 @@ using MechatronikaCool.Classes;
 
 using System.Diagnostics;
 using System.Windows.Navigation;
+using MechatronikaCool.HtmlParsers;
 
 namespace MechatronikaCool
 {
@@ -186,6 +187,14 @@ namespace MechatronikaCool
         {
             articleTitle.Text = actualField.Titles[actualField.Spans.Count + actualArticleIndex];
             articleTextBlock.Text = actualField.Articles[actualArticleIndex];
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var planWindow = new StudyPlanWindow();
+            planWindow.Show();
+
+            //var tmp = new StudyPlanLoader();
         }
     }
 }
