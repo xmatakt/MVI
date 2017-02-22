@@ -5,38 +5,51 @@
         Title="MainWindow" Height="606.433" Width="834.586" Background="#FF005CAE" MinWidth="640" MinHeight="350">
     <Grid x:Name="grid" Margin="1,0,2.4,3.2" Background="#FF005CAE">
         <Grid.RowDefinitions>
-            <RowDefinition Height="222*"/>
-            <RowDefinition Height="260*"/>
-            <RowDefinition Height="91*"/>
+            <RowDefinition Height="223*"/>
+            <RowDefinition Height="51*"/>
+            <RowDefinition Height="184*"/>
+            <RowDefinition Height="116*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid Margin="11,50,9.8,10.4" Background="#FF005CAE">
+        <Grid Margin="11,50,9.667,9.667" Background="#FF005CAE">
             <Grid.RowDefinitions>
                 <RowDefinition Height="29*"/>
                 <RowDefinition Height="133*"/>
             </Grid.RowDefinitions>
 
             <Button x:Name="spanLeftButton" Content="&lt;" Width="15" Background="Black" BorderBrush="{x:Null}" Foreground="White" Click="spanLeftButton_Click" HorizontalAlignment="Left" Grid.RowSpan="2" Margin="0,0,0,-0.4"/>
-            <Viewbox Stretch="Uniform" Margin="20,9.2,16,-0.4" Grid.Row="1">
+            <Viewbox Stretch="Uniform" Margin="20,9.2,20,-0.4" Grid.Row="1" OpacityMask="Black">
                 <TextBlock x:Name="spans" TextWrapping="Wrap" Width="500">spansTextBlock</TextBlock>
             </Viewbox>
-            <Button x:Name="spanRightButton" Content="&gt;" Margin="0,0,0,0.6" Background="Black" BorderBrush="{x:Null}" Foreground="White" Click="spanRightButton_Click" HorizontalAlignment="Right" Grid.RowSpan="2" Width="11"/>
+            <Button x:Name="spanRightButton" Content="&gt;" Margin="0,0,0,0.6" Background="Black" BorderBrush="{x:Null}" Foreground="White" Click="spanRightButton_Click" HorizontalAlignment="Right" Grid.RowSpan="2" Width="15"/>
             <Viewbox x:Name="spanView" Stretch="Uniform" Margin="20,0,16,0" VerticalAlignment="Top" Height="29" Grid.RowSpan="2">
                 <TextBlock x:Name="spanTitle"  Text="TextBlock"  Width="500"/>
             </Viewbox>
         </Grid>
-        <Grid Height="34" VerticalAlignment="Top" Background="Black" Margin="0,0,0.8,0">
+        <Grid Height="34" VerticalAlignment="Top" Background="Black" Margin="0,0,0.667,0">
             <Menu x:Name="menu" HorizontalAlignment="Center" Height="34" Margin="25,0" VerticalAlignment="Top" Background="Black"/>
             <Button x:Name="moveRight" Content="&gt;" HorizontalAlignment="Right" VerticalAlignment="Top" Width="23" RenderTransformOrigin="10.096,0.376" Height="34" Background="#FF141414" Foreground="White" Click="moveRight_Click" Margin="603,0,0,0" BorderBrush="{x:Null}"/>
             <Button x:Name="moveLeft" Content="&lt;" HorizontalAlignment="Left" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.473,0.15" Height="34" Background="#FF141414" Foreground="White" Click="moveLeft_Click" BorderBrush="{x:Null}"/>
         </Grid>
-        <Grid Margin="0,3.6,-0.2,0.4" Grid.Row="1" Background="Black"/>
-        <Grid Height="72" Margin="10,0,-0.2,4.6" Grid.Row="2" VerticalAlignment="Bottom">
+        <Grid Margin="11,4.333,9.667,0" Grid.Row="1" Background="#FF005CAE" Grid.RowSpan="2">
+            <ScrollViewer Margin="0,50,0,-1" VerticalScrollBarVisibility="Auto">
+                <TextBlock x:Name="articleTextBlock" TextWrapping="Wrap" Text="TextBlock" Margin="0,0,10,0"/>
+            </ScrollViewer>
+        </Grid>
+        <Grid Height="72" Margin="10,0,9.667,5" Grid.Row="3" VerticalAlignment="Bottom" Width="805" HorizontalAlignment="Center">
             <Grid.Background>
-                <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/logo nase2.png"/>
+                <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/logo_nase2white.png"/>
             </Grid.Background>
         </Grid>
+        <Viewbox HorizontalAlignment="Left" Stretch="Uniform" Height="47" Margin="11,4.333,0,0" Grid.Row="1" VerticalAlignment="Top" Width="804">
+            <TextBlock x:Name="articleTitle" TextWrapping="Wrap" Text="TextBlock" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFFFFFFE"/>
+        </Viewbox>
+        <Button x:Name="articleButtonLeft" Content="&lt;" HorizontalAlignment="Right" Height="24" Margin="0,10,62.667,0" Grid.Row="3" VerticalAlignment="Top" Width="50" Foreground="White" Background="Black" Click="articleButtonLeft_Click"/>
+        <Button x:Name="articleButtonRight" Content="&gt;" HorizontalAlignment="Right" Height="24" Margin="0,10,9.667,0" Grid.Row="3" VerticalAlignment="Top" Width="48" Foreground="White" Background="Black" RenderTransformOrigin="1.131,0.458" Click="articleButtonRight_Click"/>
+        <!--<Hyperlink NavigateUri="http://www.google.com" RequestNavigate="Hyperlink_RequestNavigate">
+            Click here
+        </Hyperlink>-->
     </Grid>
 </Window>

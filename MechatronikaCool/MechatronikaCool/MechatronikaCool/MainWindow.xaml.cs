@@ -6,6 +6,9 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using MechatronikaCool.Classes;
 
+using System.Diagnostics;
+using System.Windows.Navigation;
+
 namespace MechatronikaCool
 {
     /// <summary>
@@ -20,6 +23,7 @@ namespace MechatronikaCool
         private const int maxIndex = 10;
         private int maxSpanIndex = 0;
         private int actualSpanIndex = 0;
+        private int actualArticleIndex = 0;
         private ApplicationField actualField = null;
         private MenuItem oldMenuItem = null;
         private readonly List<MenuItem> menuItems = null;
@@ -37,6 +41,9 @@ namespace MechatronikaCool
             spanTitle.TextAlignment = TextAlignment.Center;
             spanTitle.FontSize = 20;
             spanTitle.Foreground = new SolidColorBrush(Colors.White);
+            articleTitle.TextAlignment = TextAlignment.Left;
+            articleTextBlock.FontSize = 18;
+            articleTextBlock.TextAlignment = TextAlignment.Justify;
 
             LoadFirstPage();
             AddItemsToMenuItem();
@@ -57,13 +64,13 @@ namespace MechatronikaCool
                 applicationFields.Add(actualField);
             }
             actualSpanIndex = 0;
+            actualArticleIndex = 0;
 
             maxSpanIndex = actualField.Spans.Count;
 
             spans.Text = actualField.Spans[actualSpanIndex];
             spanTitle.Text = actualField.Titles[actualSpanIndex];
-
-            //articleTextBlock.Text = actualField.Articles[0];
+            SetArticle();
 
             if (oldMenuItem != null)
             {
@@ -146,6 +153,8 @@ namespace MechatronikaCool
 
             spans.Text = actualField.Spans[actualSpanIndex];
             spanTitle.Text = actualField.Titles[actualSpanIndex];
+            articleTitle.Text = actualField.Titles[actualField.Spans.Count];
+            articleTextBlock.Text = actualField.Articles[0];
 
             oldMenuItem = menuItems[0];
             oldMenuItem.Background = new SolidColorBrush(Colors.White);
@@ -155,6 +164,28 @@ namespace MechatronikaCool
         private ApplicationField LoadField(string fieldName)
         {
             return applicationFields.FirstOrDefault(x => x.FieldName == fieldName);
+        }
+
+        private void articleButtonRight_Click(object sender, RoutedEventArgs e)
+        {
+            if (actualArticleIndex >= actualField.Articles.Count - 1) return;
+
+            actualArticleIndex++;
+            SetArticle();
+        }
+
+        private void articleButtonLeft_Click(object sender, RoutedEventArgs e)
+        {
+            if (actualArticleIndex <= 0) return;
+
+            actualArticleIndex--;
+            SetArticle();
+        }
+
+        private void SetArticle()
+        {
+            articleTitle.Text = actualField.Titles[actualField.Spans.Count + actualArticleIndex];
+            articleTextBlock.Text = actualField.Articles[actualArticleIndex];
         }
     }
 }
