@@ -1,0 +1,27 @@
+Prebytocna poznamka: 
+> Bol som v tom, ze to posielam na stubacky mail. Pri zobrazeni Vasej osoby v aise som klikol na moznost
+Univerzitný e-mail: erik.kucera [at] stuba.sk
+Dalej som uz nekontroloval, kam sa mail naozaj posiela, veril som aisu. Zrejme to netreba robit.
+
+Ahoj,
+
+s takouto formou odovzdania nemam problem. Staci, ked podobnu spravu, ako si napisal do mailu, das do textoveho suboru a ten odovzdas do miesta odovzdania. Takze to tam mozes rovno hodit.
+
+A nabuduce mi, prosim ta, pis na stuba mail a nie do AIS.
+
+Dakujem
+
+Pekny vecer
+EK
+
+23. 02. 2017 22:02 Bc. Timotej Maták <xmatakt@stuba.sk> napísal(a):
+> Dobry vecer,
+>
+> posilam link na github, kde skladujem zadania z predmetu MVI:
+> https://github.com/xmatakt/MVI/tree/dell
+>
+> Ak by s tym nebol problem, rad by som zadania odovzdaval touto formou, nemusim nic zipovat.
+> V prilohe Vam posielam 2 screenshoty znazornujuce vzhlad okien programu v idealnom pripade. Okno vyobrazene na obr. planWindow.png vyvolate kliknutim na feikarske logo v spodnej casti hlavneho okna.
+>
+> Dakujem.
+> Timotej Maták
