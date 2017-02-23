@@ -27,19 +27,36 @@ namespace MechatronikaCool
         public StudyPlanWindow()
         {
             InitializeComponent();
-            plan =  new StudyPlanLoader().GetStudyPlanTable();
 
+            periodComboBox.Background = new SolidColorBrush(Color.FromRgb(0, 92, 174));
+            periodComboBox.Foreground = Brushes.White;
+            periodComboBox.Resources.Add(SystemColors.WindowBrushKey, new SolidColorBrush(Color.FromRgb(0, 92, 174)));
+
+            plan =  new StudyPlanLoader().GetStudyPlanTable();
+            
             CreateDataGrid();
+            InitializeComboBox();
         }
 
         private void CreateDataGrid()
         {
             CreateColumns();
-            LoadGridData();
+            //LoadGridData(GetSelectedPeriod());
+        }
+
+        private void InitializeComboBox()
+        {
+            foreach (var key in plan.Plan.Keys)
+            {
+                periodComboBox.Items.Add(key);
+            }
+
+            periodComboBox.SelectedIndex = 0;
         }
 
         private void CreateColumns()
         {
+            DG.Items.Clear();
             var headerRow = plan.Plan[plan.Plan.Keys.ToArray()[0]].TableRows.First(x => x.IsHeaderRow);
 
             var counter = 1;
@@ -62,15 +79,14 @@ namespace MechatronikaCool
             }
         }
 
-        private void LoadGridData()
+        private void LoadGridData(string selectedPeriod)
         {
-            var rows = plan.Plan[plan.Plan.Keys.ToArray()[2]].TableRows.Where(x => !x.IsHeaderRow);
+            DG.Items.Clear();
+            var rows = plan.Plan[selectedPeriod].TableRows.Where(x => !x.IsHeaderRow);
 
             foreach (var row in rows)
             {
                 var dgRow = new DataGridRow();
-                //dgRow.Height = 200;
-                //dgRow.MaxWidth = 100;
                 dgRow.Item = UltraBadClass.ReturnSomething(row.GetRowData());
                 if (row.IsCollapsedRow)
                 {
@@ -86,6 +102,16 @@ namespace MechatronikaCool
                     DG.Items.Add(dgRow);
                 }
             }
+        }
+
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LoadGridData(GetSelectedPeriod());
+        }
+
+        private string GetSelectedPeriod()
+        {
+            return periodComboBox.Items[periodComboBox.SelectedIndex].ToString();
         }
     }
 }

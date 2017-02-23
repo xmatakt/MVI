@@ -7,6 +7,8 @@ using System.Windows.Media;
 using MechatronikaCool.Classes;
 
 using System.Diagnostics;
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using MechatronikaCool.HtmlParsers;
 
@@ -193,8 +195,16 @@ namespace MechatronikaCool
         {
             var planWindow = new StudyPlanWindow();
             planWindow.Show();
+        }
 
-            //var tmp = new StudyPlanLoader();
+        private void planButton_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Hand;
+        }
+
+        private void planButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = null;
         }
     }
 }

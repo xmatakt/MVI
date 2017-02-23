@@ -121,6 +121,9 @@
   <data name="a_02_priesvitne" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\a_02_priesvitne.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="finder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\finder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="logo_nase2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo_nase2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -135,5 +138,8 @@
   </data>
   <data name="mechatronika_claim" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mechatronika_claim.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

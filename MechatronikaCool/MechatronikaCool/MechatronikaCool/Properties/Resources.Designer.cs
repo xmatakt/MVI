@@ -71,6 +71,16 @@ namespace MechatronikaCool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap finder {
+            get {
+                object obj = ResourceManager.GetObject("finder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] logo_nase_video {
@@ -116,6 +126,16 @@ namespace MechatronikaCool.Properties {
         internal static System.Drawing.Bitmap mechatronika_claim {
             get {
                 object obj = ResourceManager.GetObject("mechatronika_claim", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap plan {
+            get {
+                object obj = ResourceManager.GetObject("plan", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
