@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Quotations.MainPage"
+             Padding="20">
+  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+
+  <StackLayout Orientation="Vertical">
+    <StackLayout Orientation="Horizontal">
+      <Button x:Name ="LeftButton" Text="  Previous  " HorizontalOptions="StartAndExpand" VerticalOptions ="Center" Clicked ="OnLeftButtonClick"></Button>
+      <Button x:Name ="RightButton" Text="  Next  " HorizontalOptions="EndAndExpand" VerticalOptions ="Center" Clicked ="OnRightButtonClick"></Button>
+    </StackLayout>
+    <StackLayout Orientation="Horizontal">
+      <Label Text="Font Size:" FontSize="20" />
+      <Label x:Name="fontSizeLabel" Text="{Binding Source ={x:Reference fontSizeSlider}, Path=Value}" FontSize="20" />
+    </StackLayout>
+    <Slider x:Name="fontSizeSlider" Maximum="50" Minimum="16" VerticalOptions="Center" ValueChanged="OnSliderValueChanged" />
+    <Label x:Name="quotationText" FontSize="{Binding Source ={x:Reference fontSizeSlider}, Path=Value}"></Label>
+  </StackLayout>
+</ContentPage>
