@@ -1,0 +1,3 @@
+Ziadne veci navyse. Appka ponuka moznosti:
+- listovania v citatoch pomocou tlacidiel Next a Previous
+- zvacsovanie fontu pomocou Slider-a
