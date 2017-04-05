@@ -1,0 +1,5 @@
+Ziadne veci navyse. Appka ponuka moznosti:
+- listovania v citatoch pomocou tlacidiel Next a Previous
+- zvacsovanie fontu pomocou Slider-a
+
+Otestovane iba v Android emulatore. iOS nemam ako a UWP ani neexistuje, kedze bezim na win 8.1.
