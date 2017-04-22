@@ -29,13 +29,13 @@ namespace CallRequestResponseService
                 var scoreRequest = new
                 {
 
-                    Inputs = new Dictionary<string, StringTable>() { 
-                        { 
-                            "input1", 
-                            new StringTable() 
+                    Inputs = new Dictionary<string, StringTable>() {
+                        {
+                            "input1",
+                            new StringTable()
                             {
-                                ColumnNames = new string[] {"Meno", "Obtiaznost predmetu", "Pocet hodin ucenia", "Znamka"},
-                                Values = new string[,] {  { "value", "0", "0", "value" },  { "value", "0", "0", "value" },  }
+                                ColumnNames = new string[] {"symboling", "normalized-losses", "make", "fuel-type", "aspiration", "num-of-doors", "body-style", "drive-wheels", "engine-location", "wheel-base", "length", "width", "height", "curb-weight", "engine-type", "num-of-cylinders", "engine-size", "fuel-system", "bore", "stroke", "compression-ratio", "horsepower", "peak-rpm", "city-mpg", "highway-mpg", "price"},
+                                Values = new string[,] {  { "0", "0", "value", "value", "value", "value", "value", "value", "value", "0", "0", "0", "0", "0", "value", "value", "0", "value", "0", "0", "0", "0", "0", "0", "0", "0" },  { "0", "0", "value", "value", "value", "value", "value", "value", "value", "0", "0", "0", "0", "0", "value", "value", "0", "value", "0", "0", "0", "0", "0", "0", "0", "0" },  }
                             }
                         },
                     },
@@ -43,10 +43,10 @@ namespace CallRequestResponseService
                     {
                     }
                 };
-                const string apiKey = "HXWCACRPtlRIEe401fFNiDG+5oZsUpLkGso4/W+XZuR5whE9AMWh7WwsbzxuSgd/lInXOaNyT6YGnTd8WM/Z2g=="; // Replace this with the API key for the web service
+                const string apiKey = "fi1hvaEFJZBzBEwYeaL9NyzXsIBYRqUPGSiDo+CEXhpiTUudpODo0dOhpAhyHzpWTThCv+GDmKimmVZT5PK0pQ=="; // Replace this with the API key for the web service
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
 
-                client.BaseAddress = new Uri("https://ussouthcentral.services.azureml.net/workspaces/fd1b75cf334c42a7a7350be5d86ef80d/services/4e2682d27d8146d8b0b6de489b343412/execute?api-version=2.0&details=true");
+                client.BaseAddress = new Uri("https://ussouthcentral.services.azureml.net/workspaces/fd1b75cf334c42a7a7350be5d86ef80d/services/1aad29c881124711b38a34d8f2396e89/execute?api-version=2.0&details=true");
 
                 // WARNING: The 'await' statement below can result in a deadlock if you are calling this code from the UI thread of an ASP.Net application.
                 // One way to address this would be to call ConfigureAwait(false) so that the execution does not attempt to resume on the original context.
@@ -60,18 +60,19 @@ namespace CallRequestResponseService
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var result = await response.Content.ReadAsStringAsync();
-                    System.Diagnostics.Debug.WriteLine("Result: " + result);
+                    string result = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine("Result: {0}", result);
                 }
                 else
                 {
-                    Console.WriteLine(string.Format("The request failed with status code: {0}\nCHECK THE OUTPUT WINDOW!", response.StatusCode));
+                    Console.WriteLine(string.Format("The request failed with status code: {0}", response.StatusCode));
 
                     // Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
-                    System.Diagnostics.Debug.WriteLine(response.Headers.ToString());
+                    Console.WriteLine(response.Headers.ToString());
 
                     string responseContent = await response.Content.ReadAsStringAsync();
-                    System.Diagnostics.Debug.WriteLine(responseContent);
+                    Console.WriteLine(responseContent);
+                    Console.ReadKey();
                 }
             }
         }
