@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FEINews"
+             x:Class="FEINews.MainPage"
+             Title="FEIkárske noviny">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="0" x:Name="layout" BackgroundColor="#d5d8dc">
+                <Button Text="Články" VerticalOptions="Start" BackgroundColor="#00bfff"
+                    Font="Arial" FontSize="Large"
+                    HeightRequest="100"
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="ArticledButton_Clicked">
+                </Button>
+                <Button Text="Šablóny pre záverečné práce" VerticalOptions="Start" BackgroundColor="#82e0aa"
+                    Font="Arial" FontSize="Large"
+                    HeightRequest="100"
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="TemplatesButton_Clicked">
+                </Button>
+                <Button Text="Otváracie hodiny objektov" VerticalOptions="Start" BackgroundColor="#cc4e0e"
+                    Font="Arial" FontSize="Large"
+                    HeightRequest="100"
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="HoursButton_Clicked">
+                </Button>
+                <Button Text="Rozvrh skúšok" VerticalOptions="Start" BackgroundColor="#5dcd30"
+                    Font="Arial" FontSize="Large"
+                    HeightRequest="100"
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="ExamsButton_Clicked">
+                </Button>
+                <Button Text="Zoznam udalostí" VerticalOptions="Start" BackgroundColor="Black"
+                    TextColor="White"
+                    Font="Arial" FontSize="Large"
+                    HeightRequest="100"
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="EventsButton_Clicked">
+                </Button>
+                <Image Source="feiLogoT.jpg" VerticalOptions="EndAndExpand" Margin="0,0,0,10"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

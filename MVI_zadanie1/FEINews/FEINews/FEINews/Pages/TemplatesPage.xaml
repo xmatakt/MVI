@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FEINews.TemplatesPage"
+             Title="Šablóny pre záverečné práce">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="TemplatesListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Detail="{Binding Degree}" TextColor="Gray" Text="{Binding Course}" DetailColor="Blue" Tapped="TextCell_Tapped"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Picker x:Name="CoursePicker" SelectedIndexChanged="Pickers_SelectedIndexChanged"/>
+            <Picker x:Name="DegreePicker" SelectedIndexChanged="Pickers_SelectedIndexChanged"/>
+            <Image Source="feiLogo.jpg" VerticalOptions="End"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

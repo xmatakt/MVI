@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FEINews.ArticleContentPage">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10,10,10,10">
+                <Label x:Name="ArticleTitleLabel" FontSize="40" TextColor="Black"/>
+                <Label x:Name="ArticleContentLabel" FontSize="25" LineBreakMode="WordWrap"
+                   XAlign="Start">
+                </Label>
+                <Image x:Name="ArticleImage" VerticalOptions="End"/>
+                <Button x:Name="ShowVideoButton" Clicked="ShowVideoButton_Clicked"
+                        VerticalOptions="EndAndExpand"
+                        BackgroundColor="#e61919"
+                        Text="Video" IsVisible="False"
+                    />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>
