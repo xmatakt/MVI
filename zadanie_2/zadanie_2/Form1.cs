@@ -1,28 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Net.Http.Formatting;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.IO;
+using System.Net.Http;
+using System.Net.Http.Formatting;
+using System.Net.Http.Headers;
 
-namespace CallRequestResponseService
+namespace zadanie_2
 {
-
-    public class StringTable
+    public partial class Form1 : Form
     {
-        public string[] ColumnNames { get; set; }
-        public string[,] Values { get; set; }
-    }
-
-    class Program
-    {
-        static void Main(string[] args)
+        public Form1()
         {
-            InvokeRequestResponseService().Wait();
-            Console.ReadKey();
+            InitializeComponent();
+
+            difficultyComboBox.Items.Add(1);
+            difficultyComboBox.Items.Add(2);
+            difficultyComboBox.Items.Add(3);
+            difficultyComboBox.Items.Add(4);
+            difficultyComboBox.SelectedIndex = 0;
         }
 
-        static async Task InvokeRequestResponseService()
+        static async Task InvokeRequestResponseService(string name, string difficulty, string hours)
         {
             using (var client = new HttpClient())
             {
@@ -35,7 +40,7 @@ namespace CallRequestResponseService
                             new StringTable() 
                             {
                                 ColumnNames = new string[] {"Meno", "Obtiaznost predmetu", "Pocet hodin ucenia", "Znamka"},
-                                Values = new string[,] {  { "value", "0", "0", "value" },  { "value", "0", "0", "value" },  }
+                                Values = new string[,] {  { name, difficulty, hours, "value" }}
                             }
                         },
                     },
@@ -43,10 +48,12 @@ namespace CallRequestResponseService
                     {
                     }
                 };
-                const string apiKey = "HXWCACRPtlRIEe401fFNiDG+5oZsUpLkGso4/W+XZuR5whE9AMWh7WwsbzxuSgd/lInXOaNyT6YGnTd8WM/Z2g=="; // Replace this with the API key for the web service
+                const string apiKey = "AiKP754aiJ8/qwkwvxraICFYgfey/u1Zq22t2z2lwNNIge2hG0hwUvGB8hDJH+slkz3T2G4zZf5pCQI95QcNnQ=="; // Replace this with the API key for the web service
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
 
-                client.BaseAddress = new Uri("https://ussouthcentral.services.azureml.net/workspaces/fd1b75cf334c42a7a7350be5d86ef80d/services/4e2682d27d8146d8b0b6de489b343412/execute?api-version=2.0&details=true");
+                client.BaseAddress =
+                    new Uri(
+                        "https://ussouthcentral.services.azureml.net/workspaces/fd1b75cf334c42a7a7350be5d86ef80d/services/294f012c5c6948bb985cc0641aef58a8/execute?api-version=2.0&details=true");
 
                 // WARNING: The 'await' statement below can result in a deadlock if you are calling this code from the UI thread of an ASP.Net application.
                 // One way to address this would be to call ConfigureAwait(false) so that the execution does not attempt to resume on the original context.
@@ -65,7 +72,7 @@ namespace CallRequestResponseService
                 }
                 else
                 {
-                    Console.WriteLine(string.Format("The request failed with status code: {0}\nCHECK THE OUTPUT WINDOW!", response.StatusCode));
+                    MessageBox.Show(string.Format("The request failed with status code: {0}\nCHECK THE OUTPUT WINDOW!", response.StatusCode));
 
                     // Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
                     System.Diagnostics.Debug.WriteLine(response.Headers.ToString());
@@ -74,6 +81,11 @@ namespace CallRequestResponseService
                     System.Diagnostics.Debug.WriteLine(responseContent);
                 }
             }
+        }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            await InvokeRequestResponseService(nameTextBox.Text, difficultyComboBox.Items[difficultyComboBox.SelectedIndex].ToString(), hoursNumericUpDown.Value.ToString());
         }
     }
 }
