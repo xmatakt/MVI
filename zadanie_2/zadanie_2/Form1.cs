@@ -11,6 +11,7 @@ using System.IO;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
+using Newtonsoft.Json;
 
 namespace zadanie_2
 {
@@ -40,7 +41,7 @@ namespace zadanie_2
                             new StringTable() 
                             {
                                 ColumnNames = new string[] {"Meno", "Obtiaznost predmetu", "Pocet hodin ucenia", "Znamka"},
-                                Values = new string[,] {  { name, difficulty, hours, "value" }}
+                                Values = new string[,] {  { name, difficulty, hours, "value" } }
                             }
                         },
                     },
@@ -48,12 +49,12 @@ namespace zadanie_2
                     {
                     }
                 };
-                const string apiKey = "AiKP754aiJ8/qwkwvxraICFYgfey/u1Zq22t2z2lwNNIge2hG0hwUvGB8hDJH+slkz3T2G4zZf5pCQI95QcNnQ=="; // Replace this with the API key for the web service
+                const string apiKey = "LJ8mC4JhqXEI9qmfAa8eVzUm4KqRwR5nf1OrN+IM6pQPP0Pa/DbU4g8U32F1uj4MUZ+h8iaQitUIY2kUY4DDRA=="; // Replace this with the API key for the web service
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
 
                 client.BaseAddress =
                     new Uri(
-                        "https://ussouthcentral.services.azureml.net/workspaces/fd1b75cf334c42a7a7350be5d86ef80d/services/294f012c5c6948bb985cc0641aef58a8/execute?api-version=2.0&details=true");
+                        "https://ussouthcentral.services.azureml.net/workspaces/fd1b75cf334c42a7a7350be5d86ef80d/services/30c0e5071ed543f19e504f7c073bc9ea/execute?api-version=2.0&details=true");
 
                 // WARNING: The 'await' statement below can result in a deadlock if you are calling this code from the UI thread of an ASP.Net application.
                 // One way to address this would be to call ConfigureAwait(false) so that the execution does not attempt to resume on the original context.
@@ -69,6 +70,7 @@ namespace zadanie_2
                 {
                     var result = await response.Content.ReadAsStringAsync();
                     System.Diagnostics.Debug.WriteLine("Result: " + result);
+                    GetPredictedMark(result);
                 }
                 else
                 {
@@ -86,6 +88,14 @@ namespace zadanie_2
         private async void button1_Click(object sender, EventArgs e)
         {
             await InvokeRequestResponseService(nameTextBox.Text, difficultyComboBox.Items[difficultyComboBox.SelectedIndex].ToString(), hoursNumericUpDown.Value.ToString());
+        }
+
+        private static void GetPredictedMark(string jsonString)
+        {
+            dynamic jsonObject = JsonConvert.DeserializeObject(jsonString);
+            string predictredMark = jsonObject.Results.output1.value.Values[0].Last.Value;
+
+            MessageBox.Show("Predpokladaná známka: " + predictredMark);
         }
     }
 }
