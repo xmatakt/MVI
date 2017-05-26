@@ -116,7 +116,7 @@
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Predpoveď počasia";
             ((System.ComponentModel.ISupportInitialize)(this.hoursNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
