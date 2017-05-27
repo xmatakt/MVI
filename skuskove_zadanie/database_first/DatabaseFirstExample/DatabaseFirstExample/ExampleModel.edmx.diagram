@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="69c3e25eb636411aace379beeb791e10" Name="Diagram1">
+        <EntityTypeShape EntityType="CodeFirsExample.Model.ExampleContextModel.Temperature" Width="1.5" PointX="3.625" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodeFirsExample.Model.ExampleContextModel.UserDetail" Width="1.5" PointX="10.125" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CodeFirsExample.Model.ExampleContextModel.User" Width="1.5" PointX="6.875" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="CodeFirsExample.Model.ExampleContextModel.FK_dbo_Temperatures_dbo_Users_UserID" ManuallyRouted="false" />
+        <AssociationConnector Association="CodeFirsExample.Model.ExampleContextModel.FK_dbo_UserDetails_dbo_Users_UserID" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CodeFirsExample.Model.ExampleContextModel.HeartRate" Width="1.5" PointX="7.125" PointY="4.75" />
+        <AssociationConnector Association="CodeFirsExample.Model.ExampleContextModel.FK__HeartRate__UserI__3D5E1FD2" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

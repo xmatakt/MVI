@@ -41,8 +41,7 @@ namespace CodeFirsExample
             using (var db = new ExampleContext())
             {
                 // vyberiem prveho administratora
-                var user = db.Users.FirstOrDefault();
-
+                var user = db.Users.FirstOrDefault(x => x.Login == "admin");
                 
                 // ak nejaky existuje, pridam mu aj detaily
                 if (user != null)
@@ -87,6 +86,7 @@ namespace CodeFirsExample
                     {
                         user.UserID,
                         user.Login,
+                        // ak nie je definovane meno alebo priezvisko, zobrazi sa text not defined
                         Name = ((b.Name == null) ? "not defined" : b.Name),
                         Surname = (b.Surname == null) ? "not defined" : b.Surname
                     };
@@ -98,10 +98,12 @@ namespace CodeFirsExample
             }
         }
 
+        // vytvorim noveho pacienta a priradim mu dajake teploty, nech je co zobrazovat
         private void button4_Click(object sender, EventArgs e)
         {
             using (var db = new ExampleContext())
             {
+
                 var user = new User
                 {
                     Login = "user1",
@@ -127,6 +129,7 @@ namespace CodeFirsExample
             }
         }
 
+        // zobrazim teploty vsetkych pacientov do RichTextBoxu
         private void button5_Click(object sender, EventArgs e)
         {
             using (var db = new ExampleContext())
