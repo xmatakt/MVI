@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ExampleModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ExampleModelStoreContainer">
+    <EntitySet Name="Users" EntityType="ExampleModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserDetails" EntityType="ExampleModel.Store.UserDetails" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="User_UserDetails" Association="ExampleModel.Store.User_UserDetails">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserDetails" EntitySet="UserDetails" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserType" Type="smallint" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="UserDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Surname" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="User_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="User_UserDetails">
+    <End Role="User" Type="ExampleModel.Store.Users" Multiplicity="1" />
+    <End Role="UserDetails" Type="ExampleModel.Store.UserDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserDetails">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ExampleModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ExampleModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="ExampleModel.User" />
+          <EntitySet Name="UserDetails" EntityType="ExampleModel.UserDetails" />
+          <AssociationSet Name="User_UserDetails" Association="ExampleModel.User_UserDetails">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserDetails" EntitySet="UserDetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" Nullable="false" />
+          <Property Name="UserType" Type="Int16" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="true" />
+          <NavigationProperty Name="UserDetail" Relationship="ExampleModel.User_UserDetails" FromRole="User" ToRole="UserDetails" />
+        </EntityType>
+        <EntityType Name="UserDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="true" />
+          <Property Name="Surname" Type="String" Nullable="true" />
+          <NavigationProperty Name="User" Relationship="ExampleModel.User_UserDetails" FromRole="UserDetails" ToRole="User" />
+        </EntityType>
+        <Association Name="User_UserDetails">
+          <End Type="ExampleModel.User" Role="User" Multiplicity="1" />
+          <End Type="ExampleModel.UserDetails" Role="UserDetails" Multiplicity="0..1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ExampleModelStoreContainer" CdmEntityContainer="ExampleModelContainer">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(ExampleModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(ExampleModel.UserDetails)">
+        <MappingFragment StoreEntitySet="UserDetails">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="User_UserDetails" TypeName="ExampleModel.User_UserDetails" StoreEntitySet="UserDetails">
+      <EndProperty Name="User">
+        <ScalarProperty Name="ID" ColumnName="User_ID" />
+      </EndProperty>
+      <EndProperty Name="UserDetails">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="99861bac8578479cadbdd03e2cae2036" Name="Diagram1">
+        <EntityTypeShape EntityType="ExampleModel.User" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExampleModel.UserDetails" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="ExampleModel.User_UserDetails" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
